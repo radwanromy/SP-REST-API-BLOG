@@ -53,10 +53,24 @@ public class PostServiceImpl implements PostService{
         // get Post by Id from the database
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
 
-        post.setTitle(postDto.getTitle());
+        post.setLckrid(postDto.getLckrid());
         post.setLckrcod(postDto.getLckrcod());
         post.setLckrnam(postDto.getLckrnam());
         post.setVencod(postDto.getVencod());
+        post.setBrandcod(postDto.getBrandcod());
+        post.setNumofdrwr(postDto.getNumofdrwr());
+        post.setLckrdes(postDto.getLckrdes());
+        post.setRemarks(postDto.getRemarks());
+        post.setOprstamp(postDto.getOprstamp());
+        post.setOprtimstamp(postDto.getOprtimstamp());
+        post.setUpdstamp(postDto.getUpdstamp());
+        post.setUpdtimstamp(postDto.getUpdtimstamp());
+        post.setActflg(postDto.getActflg());
+        post.setBokflg(postDto.getBokflg());
+        post.setAppflg(postDto.getAppflg());
+        post.setAppstamp(postDto.getAppstamp());
+        post.setApptimstamp(postDto.getApptimstamp());
+
         Post updatedPost = postRepository.save(post);
         return mapToDTO(updatedPost);
     }
@@ -72,19 +86,46 @@ public class PostServiceImpl implements PostService{
     private PostDto mapToDTO(Post post){
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
-        postDto.setTitle(post.getTitle());
+        postDto.setLckrid(post.getLckrid());
         postDto.setLckrcod(post.getLckrcod());
         postDto.setLckrnam(post.getLckrnam());
         postDto.setVencod(post.getVencod());
+        postDto.setBrandcod(post.getBrandcod());
+        postDto.setNumofdrwr(post.getNumofdrwr());
+        postDto.setLckrdes(post.getLckrdes());
+        postDto.setRemarks(post.getRemarks());
+        postDto.setOprstamp(post.getOprstamp());
+        postDto.setOprtimstamp(post.getOprtimstamp());
+        postDto.setUpdstamp(post.getUpdstamp());
+        postDto.setUpdtimstamp(post.getUpdtimstamp());
+        postDto.setActflg(post.getActflg());
+        postDto.setBokflg(post.getBokflg());
+        postDto.setAppflg(post.getAppflg());
+        postDto.setAppstamp(post.getAppstamp());
+        postDto.setApptimstamp(post.getApptimstamp());
+
+
         return postDto;
     }
     private Post mapToEntity(PostDto postDto){
         Post post = new Post();
-        post.setTitle(postDto.getTitle());
+        post.setLckrid(postDto.getLckrid());
         post.setLckrcod(postDto.getLckrcod());
         post.setLckrnam(postDto.getLckrnam());
         post.setVencod(postDto.getVencod());
+        post.setBrandcod(postDto.getBrandcod());
+        post.setNumofdrwr(postDto.getNumofdrwr());
+        post.setLckrdes(postDto.getLckrdes());
+        post.setRemarks(postDto.getRemarks());
+        post.setOprstamp(postDto.getOprstamp());
+        post.setOprtimstamp(postDto.getOprtimstamp());
+        post.setUpdstamp(postDto.getUpdstamp());
+        post.setUpdtimstamp(postDto.getUpdtimstamp());
+        post.setActflg(postDto.getActflg());
+        post.setBokflg(postDto.getBokflg());
+        post.setAppflg(postDto.getAppflg());
+        post.setAppstamp(postDto.getAppstamp());
+        post.setApptimstamp(postDto.getApptimstamp());
         return post;
-
     }
 }

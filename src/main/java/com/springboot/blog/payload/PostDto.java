@@ -6,7 +6,7 @@ import lombok.Data;
 
 public class PostDto {
     private long id;
-    private String title;
+    private String lckrid;
     private String lckrcod;
     private String lckrnam;
     private String vencod;
@@ -19,7 +19,10 @@ public class PostDto {
     private String updstamp;
     private String updtimstamp;
     private String actflg;
-
+    private String bokflg;
+    private String appflg;
+    private String appstamp;
+    private String apptimstamp;
 
 
 }

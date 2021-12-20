@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(
         name = "posts",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})}
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"lckrid"})}
 )
 public class Post {
     @Id
@@ -22,8 +22,8 @@ public class Post {
     )
     private Long id;
 
-    @Column(name  = "title", nullable = false)
-    private String title;
+    @Column(name  = "lckrid", nullable = false)
+    private String lckrid;
 
 
     @Column(name  = "lckrcod", nullable = false)
@@ -51,9 +51,6 @@ public class Post {
     @Column(name  = "oprstamp", nullable = false)
     private  String oprstamp;
 
-    @Column(name  = "oprstamp", nullable = false)
-    private  String oprstamp;
-
     @Column(name  = "oprtimstamp", nullable = false)
     private  String oprtimstamp;
 
@@ -62,6 +59,20 @@ public class Post {
 
     @Column(name  = "updtimstamp", nullable = false)
     private  String updtimstamp;
+
     @Column(name  = "actflg", nullable = false)
     private  String actflg;
+
+    @Column(name  = "bokflg", nullable = false)
+    private  String bokflg;
+
+    @Column(name  = "appflg", nullable = false)
+    private  String appflg;
+
+    @Column(name  = "appstamp", nullable = false)
+    private  String appstamp;
+
+    @Column(name  = "apptimstamp", nullable = false)
+    private  String apptimstamp;
+
 }
