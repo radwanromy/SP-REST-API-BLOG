@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -19,10 +20,11 @@ public class PostServiceImpl implements PostService{
     @Override
     public PostDto createPost(PostDto postDto){
         //convert DTO to entity
-        Post post = new Post();
-        post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
+//        Post post = new Post();
+//        post.setTitle(postDto.getTitle());
+//        post.setDescription(postDto.getDescription());
+//        post.setContent(postDto.getContent());
+        Post post = mapToEntity(postDto);
         Post newPost = postRepository.save(post);
 
         //Convert Entity to DTO
@@ -33,7 +35,9 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<PostDto> getAllPosts() {
-        return null;
+        List<Post> posts= postRepository.findAll();
+        return posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+
     }
 
     //convert Entity Into DTO
