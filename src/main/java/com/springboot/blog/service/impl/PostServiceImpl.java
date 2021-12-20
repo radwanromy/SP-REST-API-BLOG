@@ -54,10 +54,18 @@ public class PostServiceImpl implements PostService{
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
 
         post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
+        post.setLckrcod(postDto.getLckrcod());
+        post.setLckrnam(postDto.getLckrnam());
+        post.setVencod(postDto.getVencod());
         Post updatedPost = postRepository.save(post);
         return mapToDTO(updatedPost);
+    }
+
+    @Override
+    public void deletePostById(long id) {
+        // get Post by Id from the database
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
+        postRepository.delete(post);
     }
 
     //convert Entity Into DTO
@@ -65,17 +73,18 @@ public class PostServiceImpl implements PostService{
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
         postDto.setTitle(post.getTitle());
-        postDto.setDescription(post.getDescription());
-        postDto.setContent(post.getContent());
+        postDto.setLckrcod(post.getLckrcod());
+        postDto.setLckrnam(post.getLckrnam());
+        postDto.setVencod(post.getVencod());
         return postDto;
     }
     private Post mapToEntity(PostDto postDto){
         Post post = new Post();
         post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
+        post.setLckrcod(postDto.getLckrcod());
+        post.setLckrnam(postDto.getLckrnam());
+        post.setVencod(postDto.getVencod());
         return post;
-
 
     }
 }
