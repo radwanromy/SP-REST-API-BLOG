@@ -29,7 +29,6 @@ public class Post {
     @Column(name  = "lckrcod", nullable = false)
     private String lckrcod;
 
-
     @Column(name  = "lckrnam", nullable = false)
     private  String lckrnam;
 
