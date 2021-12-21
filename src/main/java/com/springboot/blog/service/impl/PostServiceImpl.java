@@ -11,15 +11,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PostServiceImpl implements PostService{
+public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository){
+    public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
     @Override
-    public PostDto createPost(PostDto postDto){
+    public PostDto createPost(PostDto postDto) {
         //convert DTO to entity
 //        Post post = new Post();
 //        post.setTitle(postDto.getTitle());
@@ -36,7 +37,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<PostDto> getAllPosts() {
-        List<Post> posts= postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
         return posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
 
     }
@@ -44,14 +45,14 @@ public class PostServiceImpl implements PostService{
     @Override
     public PostDto getPostById(long id) {
         Post post;
-        post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
+        post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         return mapToDTO(post);
     }
 
     @Override
     public PostDto updatePost(PostDto postDto, long id) {
         // get Post by Id from the database
-        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
 
         post.setLckrid(postDto.getLckrid());
         post.setLckrcod(postDto.getLckrcod());
@@ -78,12 +79,12 @@ public class PostServiceImpl implements PostService{
     @Override
     public void deletePostById(long id) {
         // get Post by Id from the database
-        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id", id));
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         postRepository.delete(post);
     }
 
     //convert Entity Into DTO
-    private PostDto mapToDTO(Post post){
+    private PostDto mapToDTO(Post post) {
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
         postDto.setLckrid(post.getLckrid());
@@ -107,7 +108,8 @@ public class PostServiceImpl implements PostService{
 
         return postDto;
     }
-    private Post mapToEntity(PostDto postDto){
+
+    private Post mapToEntity(PostDto postDto) {
         Post post = new Post();
         post.setLckrid(postDto.getLckrid());
         post.setLckrcod(postDto.getLckrcod());
